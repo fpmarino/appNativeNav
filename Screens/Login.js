@@ -5,7 +5,7 @@ import * as Google from 'expo-google-app-auth'
 
 
 
-export class LoginScreen extends Component {
+export class Login extends Component {
 
   async  signInWithGoogle() {
         try {

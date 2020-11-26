@@ -8,8 +8,8 @@ import { DrawerItem, DrawerContentScrollView } from '@react-navigation/drawer';
 import {DrawerContentScreen} from "./Screens/DrawerContentScreen";
 
 
-import {LoginScreen} from './Screens/Login.js';
-import {HomeScreen} from "./Screens/Home.js";
+import {Login} from './Screens/Login.js';
+import {Home} from "./Screens/Home.js";
 import {BuscarCerveceria} from "./Screens/BuscarCerveceria.js";
 
 
@@ -36,7 +36,7 @@ setStateLogout= () =>{
   render(){
     if(this.state.estaLogeado != true){
       return(
-        <LoginScreen onLogin={() => this.setStateLogin()}   />
+        <Login onLogin={() => this.setStateLogin()}   />
 
       );
     }else{

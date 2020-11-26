@@ -5,7 +5,7 @@ import { Linking } from 'react-native';
 
 //const image = { uri: "https://media.playstation.com/is/image/SCEA/25yearsofplay_wallpaper_mobile_blue?$native_nt$"};
 
-export class HomeScreen extends Component {
+export class Home extends Component {
 
   
 
