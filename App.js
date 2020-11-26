@@ -1,36 +1,66 @@
 import React, {Component} from 'react';
-import { AppLoading } from 'expo';
-import { Container, Text } from 'native-base';
-import * as Font from 'expo-font';
-import { Ionicons } from '@expo/vector-icons';
+import { StyleSheet} from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import {DrawerDefaultNavigator} from './Navigators/DrawerDefaultNavigator';
+import {DrawerCustomNavigator} from './Navigators/DrawerCustomNavigator.js';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { DrawerItem, DrawerContentScrollView } from '@react-navigation/drawer';
+import {DrawerContentScreen} from "./Screens/DrawerContentScreen";
+
+
+import {LoginScreen} from './Screens/Login.js';
+import {HomeScreen} from "./Screens/Home.js";
+import {BuscarCerveceria} from "./Screens/BuscarCerveceria.js";
+
+
+const Drawer = createDrawerNavigator();
 
 export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isReady: false,
-    };
-  }
-
-  async componentDidMount() {
-    await Font.loadAsync({
-      Roboto: require('native-base/Fonts/Roboto.ttf'),
-      Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
-      ...Ionicons.font,
-    });
-    this.setState({ isReady: true });
-  }
-
-  render() {
-    if (!this.state.isReady) {
-      return <AppLoading />;
-    }
-
-    return (
-      <Container>
-        <Text>Open up App.js to start working on your app!</Text>
-      </Container>
-    );
-  }
+ 
   
+  constructor(props){
+    super(props);
+    this.state = {estaLogeado:false}
 }
+
+setStateLogin(){
+  this.setState({estaLogeado:true});
+}
+
+setStateLogout= () =>{
+  this.setState({estaLogeado:false});
+}
+
+
+
+  render(){
+    if(this.state.estaLogeado != true){
+      return(
+        <LoginScreen onLogin={() => this.setStateLogin()}   />
+
+      );
+    }else{
+      return (
+     
+      <NavigationContainer>
+         <DrawerCustomNavigator onLogout={this.setStateLogout}/>
+      </NavigationContainer>
+      
+      );
+    
+
+    }
+    
+   
+  }
+
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
